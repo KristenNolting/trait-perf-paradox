@@ -56,6 +56,12 @@ Protea_data <- Protea_data %>%
     Canopy_scaled = scale(Canopy_area_in2)
   )
 
+# select variables used in subsequent analyses
+Protea_data <- Protea_data %>%
+  select(Species, Site, BW_scaled, WD_scaled, Leaf_Area_scaled, LMA_scaled, LD_scaled,
+         LWR_scaled, Stom_L_scaled, Stom_D_scaled, Ks_scaled, LSC_scaled, Photo_scaled,
+         Total_Assim_scaled, Cond_scaled, WUE_Instan_scaled)
+
 #check
 dim(Protea_data)
 
