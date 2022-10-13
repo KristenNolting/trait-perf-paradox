@@ -34,6 +34,7 @@ Protea_data <- subset_data %>%
 Protea_data[Protea_data$Site == "Cederberg" & Protea_data$Species == "PRRE",]
 
 # This centers the trait data at zero and scales it by 1 standard deviation
+# We use centered and scaled data in all analyses
 Protea_data <- Protea_data %>%
   mutate(
     BW_scaled = scale(BW_dry_avg),
