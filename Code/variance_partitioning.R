@@ -327,6 +327,6 @@ plot_grid(Str_Trait_plot2, Perf_Trait_plot2,
           labels = c("A", "B"), ncol = 1, nrow = 2)
 
 # save
-ggsave(filename = "var-partitionin_panel-plot_2.pdf", 
+ggsave(filename = "var-partitioning_panel-plot_2.pdf", 
        path = "Output/Figures",
        height = 8, width = 6)
