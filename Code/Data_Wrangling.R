@@ -7,8 +7,8 @@ library(tidyverse)
 # clean working environment
 rm(list = ls())
 
-# Read in full dataframe (from Nolting et al. 2020)
-full_data <- read.csv("/Data/Individual_Data_for_Analysis.csv", na.strings = ".")
+# Read in full dataframe (from Nolting et al. 2021)
+full_data <- read.csv("Data/Individual_Data_for_Analysis.csv", na.strings = ".")
 
 
 # Drop populations not used, create variable for Instantaneous WUE, select relevant columns
@@ -58,6 +58,9 @@ Protea_data <- Protea_data %>%
 
 #check
 dim(Protea_data)
+
+# save as R object to load in associated analysis files
+save(Protea_data, file = "Data/Protea_data.RData")
 
 # clean up, as we'll work with Protea_data
 rm(full_data)
