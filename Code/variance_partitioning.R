@@ -1,8 +1,6 @@
 # Code to perform variance partitioning and plotting. 
 
 # load libraries
-library(rstan)
-library(rstanarm)
 library(brms)
 library(tidyverse)
 library(ggplot2)
@@ -193,7 +191,7 @@ Str_Trait_plot2
 # Performance Traits #
 ######################
 
-# 1. Hydraulic Conductance (Ks)
+# 1. Hydraulic Conductivity (Ks)
 Ks_var <- brm(Ks_scaled ~ 1 + (1|Species),
               data = Protea_data,
               family = gaussian(link = "identity"),
@@ -318,7 +316,7 @@ Perf_Trait_plot2 <- ggplot(data = Perf_Trait_Var_df,
                             "LSP_among_var_percent" = "Leaf-Specific \n Photosynthesis",
                             "Photo_among_var_percent" = "Photosynthetic \n Rate",
                             "LSC_among_var_percent" = "Leaf-Specific \n Conductivity",
-                            "Ks_among_var_percent" = "Hydraulic \n Conductance",
+                            "Ks_among_var_percent" = "Hydraulic \n Conductivity",
                             "Cond_among_var_percent" = "Stomatal \n Conductance"))
 Perf_Trait_plot2
 

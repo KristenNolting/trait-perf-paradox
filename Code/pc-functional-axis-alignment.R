@@ -12,7 +12,6 @@ library(ggplot2)
 library(tidyverse)
 library(cowplot)
 library(brms)
-library(rstanarm)
 library(tidybayes)
 library(bayesplot)
 

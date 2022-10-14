@@ -19,10 +19,10 @@ All following are traits. Note that "_scaled" indicates the raw values were cent
 8: LWR_scaled:  lamina length-width ratio (unitless)
 9: Stom_L_scaled: stomatal length (mm)
 10: Stom_D_scaled: stomatal density on top leaf surface (mm^-2)
-11: Ks_scaled: stem-specific hydraulic conductance
-12: LSC_scaled: leaf-specific conductivity
-13: Photo_scaled: area-based light-saturated photosynthetic rate 
-14: Total_Assim_scaled: leaf-specific photosynthetic rate
-15: Cond_scaled: stomatal conductance
-16: WUE_Instan_scaled: instantaneous water-use efficiency
+11: Ks_scaled: stem-specific hydraulic conductivity (kg s^-1 m^-1 MPa^-1)
+12: LSC_scaled: leaf-specific conductivity (kg s^-1 m^-1 MPa^-1)
+13: Photo_scaled: area-based light-saturated photosynthetic rate (μmol m^-2 s^-1)
+14: Total_Assim_scaled: leaf-specific photosynthetic rate (μmol m^-2 s^-1)
+15: Cond_scaled: stomatal conductance (mol H2O m^-2 s^-1)
+16: WUE_Instan_scaled: instantaneous water-use efficiency (A/E; mmol mol^-1)
 
