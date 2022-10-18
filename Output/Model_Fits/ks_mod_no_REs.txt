@@ -1,0 +1,26 @@
+ Family: gaussian 
+  Links: mu = identity; sigma = identity 
+Formula: Ks_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + LMA_scaled + LD_scaled + LWR_scaled + Stom_L_scaled + Stom_D_scaled 
+   Data: Protea_data (Number of observations: 132) 
+  Draws: 4 chains, each with iter = 4000; warmup = 2000; thin = 1;
+         total post-warmup draws = 8000
+
+Population-Level Effects: 
+                 Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept           -0.00      0.08    -0.16     0.16 1.00     8839     5594
+BW_scaled           -0.12      0.19    -0.50     0.25 1.00     3852     4791
+WD_scaled           -0.10      0.11    -0.31     0.11 1.00     7581     5341
+Leaf_Area_scaled    -0.23      0.17    -0.55     0.11 1.00     4271     5357
+LMA_scaled           0.01      0.16    -0.31     0.32 1.00     4109     5240
+LD_scaled           -0.27      0.12    -0.51    -0.02 1.00     6956     5685
+LWR_scaled           0.27      0.18    -0.08     0.63 1.00     5809     5245
+Stom_L_scaled        0.08      0.21    -0.33     0.49 1.00     5554     5913
+Stom_D_scaled        0.05      0.17    -0.27     0.38 1.00     6809     5624
+
+Family Specific Parameters: 
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.94      0.06     0.83     1.07 1.00     7116     5865
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).
