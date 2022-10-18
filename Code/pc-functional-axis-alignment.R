@@ -51,6 +51,10 @@ ks_mod_2 <- brm(Ks_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
                 iter = 4000, warmup = 2000, chains = 4,
                 file = "Output/Model_Fits/ks_mod_no_REs")
 
+sink(file = "Output/Model_Fits/ks_mod_no_REs.txt")
+summary(ks_mod_2)
+sink()
+
 
 # 2. LSC
 LSC_mod_2 <- brm(LSC_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + 
@@ -63,6 +67,10 @@ LSC_mod_2 <- brm(LSC_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
                  save_pars = save_pars(all = TRUE),
                  iter = 4000, warmup = 2000, chains = 4,
                  file = "Output/Model_Fits/LSC_mod_no_REs")
+
+sink(file = "Output/Model_Fits/LSC_mod_no_REs.txt")
+summary(LSC_mod_2)
+sink()
 
 
 # 3. Photo
@@ -77,6 +85,10 @@ Photo_mod_2 <- brm(Photo_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
                    iter = 4000, warmup = 2000, chains = 4,
                    file = "Output/Model_Fits/Photo_mod_no_REs")
 
+sink(file = "Output/Model_Fits/Photo_mod_no_REs.txt")
+summary(Photo_mod_2)
+sink()
+
 
 # 4. LSP
 LSP_mod_2 <- brm(Total_Assim_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + 
@@ -89,6 +101,10 @@ LSP_mod_2 <- brm(Total_Assim_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
                  save_pars = save_pars(all = TRUE),
                  iter = 4000, warmup = 2000, chains = 4,
                  file = "Output/Model_Fits/LSP_mod_no_REs")
+
+sink(file = "Output/Model_Fits/LSP_mod_no_REs.txt")
+summary(LSP_mod_2)
+sink()
 
 
 # 5. Conductance
@@ -103,6 +119,10 @@ Cond_mod_2 <- brm(Cond_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
                   iter = 4000, warmup = 2000, chains = 4,
                   file = "Output/Model_Fits/Cond_mod_no_REs")
 
+sink(file = "Output/Model_Fits/Cond_mod_no_REs.txt")
+summary(Cond_mod_2)
+sink()
+
 
 # 6. Instantaneous WUE
 WUE_Instan_mod_2 <- brm(WUE_Instan_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + 
@@ -115,6 +135,10 @@ WUE_Instan_mod_2 <- brm(WUE_Instan_scaled ~ BW_scaled + WD_scaled + Leaf_Area_sc
                         save_pars = save_pars(all = TRUE),
                         iter = 4000, warmup = 2000, chains = 4,
                         file = "Output/Model_Fits/WUE_mod_no_REs")
+
+sink(file = "Output/Model_Fits/WUE_mod_no_REs.txt")
+summary(WUE_Instan_mod_2)
+sink()
 
 
 #################################################
