@@ -35,7 +35,10 @@ ks_mod <- brm(Ks_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
 
 bayes_R2(ks_mod)
 bayes_R2(ks_mod, re_formula = NA)
-write.csv(print(summary(ks_mod), file = "Output/Model_Fits/ks_mod.txt"))
+
+sink(file = "Output/Model_Fits/ks_mod.txt")
+summary(ks_mod)
+sink()
 
 
 # 2. Leaf-Specific Conductivity (LSC)
@@ -55,6 +58,10 @@ LSC_mod <- brm(LSC_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
 bayes_R2(LSC_mod)
 bayes_R2(LSC_mod, re_formula = NA)
 
+sink(file = "Output/Model_Fits/LSC_mod.txt")
+summary(LSC_mod)
+sink()
+
 
 # 3. Area-based photosynthetic rate
 Photo_mod <- brm(Photo_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + 
@@ -72,6 +79,10 @@ Photo_mod <- brm(Photo_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
 
 bayes_R2(photo_mod)
 bayes_R2(photo_mod, re_formula = NA)
+
+sink(file = "Output/Model_Fits/Photo_mod.txt")
+summary(Photo_mod)
+sink()
 
 
 # 4. Total Assimilation (LSP)
@@ -91,6 +102,10 @@ Total_Assim_mod <- brm(Total_Assim_scaled ~ BW_scaled + WD_scaled + Leaf_Area_sc
 bayes_R2(Total_Assim_mod)
 bayes_R2(Total_Assim_mod, re_formula = NA)
 
+sink(file = "Output/Model_Fits/LSP_mod.txt")
+summary(Total_Assim_mod)
+sink()
+
 
 # 5. Stomatal Conductance
 Cond_mod <- brm(Cond_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + 
@@ -109,6 +124,10 @@ Cond_mod <- brm(Cond_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
 bayes_R2(Cond_mod)
 bayes_R2(Cond_mod, re_formula = NA)
 
+sink(file = "Output/Model_Fits/Cond_mod.txt")
+summary(Cond_mod)
+sink()
+
 
 # 6. Instantaneous WUE
 WUE_Instan_mod <- brm(WUE_Instan_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + 
@@ -126,6 +145,10 @@ WUE_Instan_mod <- brm(WUE_Instan_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scal
 
 bayes_R2(WUE_Instan_mod)
 bayes_R2(WUE_Instan_mod, re_formula = NA)
+
+sink(file = "Output/Model_Fits/WUE_mod.txt")
+summary(WUE_Instan_mod)
+sink()
 
 
 # Make a predicted versus observed plot for each model, and combine into multipanel plot

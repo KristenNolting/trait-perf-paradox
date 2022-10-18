@@ -1,0 +1,39 @@
+ Family: gaussian 
+  Links: mu = identity; sigma = identity 
+Formula: LSC_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled + LMA_scaled + LD_scaled + LWR_scaled + Stom_L_scaled + Stom_D_scaled + (1 | Site) + (1 | Species) + (1 | Site:Species) 
+   Data: Protea_data (Number of observations: 132) 
+  Draws: 4 chains, each with iter = 4000; warmup = 2000; thin = 1;
+         total post-warmup draws = 8000
+
+Group-Level Effects: 
+~Site (Number of levels: 3) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.87      1.04     0.02     3.64 1.00     3165     4119
+
+~Site:Species (Number of levels: 8) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.73      0.46     0.16     1.87 1.00     2933     3506
+
+~Species (Number of levels: 5) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.79      0.70     0.03     2.61 1.00     3142     4041
+
+Population-Level Effects: 
+                 Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept           -0.03      0.58    -1.21     1.16 1.00     4955     4627
+BW_scaled            0.15      0.22    -0.28     0.58 1.00     8305     5851
+WD_scaled           -0.03      0.12    -0.26     0.20 1.00     9285     6270
+Leaf_Area_scaled    -0.34      0.24    -0.81     0.11 1.00     7929     5895
+LMA_scaled          -0.05      0.21    -0.46     0.37 1.00     8015     6188
+LD_scaled            0.30      0.18    -0.06     0.66 1.00     7327     5860
+LWR_scaled           0.04      0.24    -0.42     0.52 1.00     8260     5911
+Stom_L_scaled        0.17      0.23    -0.28     0.63 1.00     8043     6127
+Stom_D_scaled        0.26      0.20    -0.13     0.66 1.00     8198     5837
+
+Family Specific Parameters: 
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.89      0.06     0.78     1.01 1.00     7984     5618
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).
