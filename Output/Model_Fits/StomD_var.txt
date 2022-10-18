@@ -1,0 +1,23 @@
+ Family: gaussian 
+  Links: mu = identity; sigma = identity 
+Formula: Stom_D_scaled ~ 1 + (1 | Species) 
+   Data: Protea_data (Number of observations: 132) 
+  Draws: 4 chains, each with iter = 4000; warmup = 2000; thin = 1;
+         total post-warmup draws = 8000
+
+Group-Level Effects: 
+~Species (Number of levels: 5) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     1.37      0.66     0.64     3.12 1.00     1503     2070
+
+Population-Level Effects: 
+          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept     0.25      0.51    -0.82     1.22 1.00     1891     2093
+
+Family Specific Parameters: 
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.48      0.03     0.43     0.55 1.00     3375     3060
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).

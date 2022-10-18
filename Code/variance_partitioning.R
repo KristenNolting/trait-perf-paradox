@@ -36,6 +36,10 @@ BW_among_var <- apply(BW_var_df[,5:9], 1, var)
 BW_within_var <- (BW_var_df$sigma)^2
 BW_among_var_percent <- (BW_among_var/(BW_among_var + BW_within_var))*100
 
+sink(file = "Output/Model_Fits/BW_var.txt")
+summary(BW_var)
+sink()
+
 
 # 2. Wood Density (WD)
 WD_var <- brm(WD_scaled ~ 1 + (1|Species),
@@ -52,6 +56,10 @@ WD_var_df <- as.data.frame(WD_var)
 WD_among_var <- apply(WD_var_df[,5:9], 1, var)
 WD_within_var <- (WD_var_df$sigma)^2
 WD_among_var_percent <- (WD_among_var/(WD_among_var + WD_within_var))*100
+
+sink(file = "Output/Model_Fits/WD_var.txt")
+summary(WD_var)
+sink()
 
 
 # 3. Leaf Area (Leaf_Area)
@@ -70,6 +78,10 @@ LA_among_var <- apply(LA_var_df[,5:9], 1, var)
 LA_within_var <- (LA_var_df$sigma)^2
 LA_among_var_percent <- (LA_among_var/(LA_among_var + LA_within_var))*100
 
+sink(file = "Output/Model_Fits/LA_var.txt")
+summary(LA_var)
+sink()
+
 
 # 4. Leaf Mass per Area (LMA)
 LMA_var <- brm(LMA_scaled ~ 1 + (1|Species),
@@ -86,6 +98,10 @@ LMA_var_df <- as.data.frame(LMA_var)
 LMA_among_var <- apply(LMA_var_df[,5:9], 1, var)
 LMA_within_var <- (LMA_var_df$sigma)^2
 LMA_among_var_percent <- (LMA_among_var/(LMA_among_var + LMA_within_var))*100
+
+sink(file = "Output/Model_Fits/LMA_var.txt")
+summary(LMA_var)
+sink()
 
 
 # 5. Lamina Density (LD)
@@ -104,6 +120,10 @@ LD_among_var <- apply(LD_var_df[,5:9], 1, var)
 LD_within_var <- (LD_var_df$sigma)^2
 LD_among_var_percent <- (LD_among_var/(LD_among_var + LD_within_var))*100
 
+sink(file = "Output/Model_Fits/LD_var.txt")
+summary(LD_var)
+sink()
+
 
 # 6. Leaf LWR (LWR)
 LWR_var <- brm(LWR_scaled ~ 1 + (1|Species),
@@ -120,6 +140,10 @@ LWR_var_df <- as.data.frame(LWR_var)
 LWR_among_var <- apply(LWR_var_df[,5:9], 1, var)
 LWR_within_var <- (LWR_var_df$sigma)^2
 LWR_among_var_percent <- (LWR_among_var/(LWR_among_var + LWR_within_var))*100
+
+sink(file = "Output/Model_Fits/LWR_var.txt")
+summary(LWR_var)
+sink()
 
 
 # 7. Stomatal Length (StomL)
@@ -138,6 +162,10 @@ StomL_among_var <- apply(StomL_var_df[,5:9], 1, var)
 StomL_within_var <- (StomL_var_df$sigma)^2
 StomL_among_var_percent <- (StomL_among_var/(StomL_among_var + StomL_within_var))*100
 
+sink(file = "Output/Model_Fits/StomL_var.txt")
+summary(StomL_var)
+sink()
+
 
 # 8. Stomatal Density (StomD)
 StomD_var <- brm(Stom_D_scaled ~ 1 + (1|Species),
@@ -154,6 +182,10 @@ StomD_var_df <- as.data.frame(StomD_var)
 StomD_among_var <- apply(StomD_var_df[,5:9], 1, var)
 StomD_within_var <- (StomD_var_df$sigma)^2
 StomD_among_var_percent <- (StomD_among_var/(StomD_among_var + StomD_within_var))*100
+
+sink(file = "Output/Model_Fits/StomD_var.txt")
+summary(StomD_var)
+sink()
 
 
 # Make a dataframe for plotting
@@ -207,6 +239,10 @@ Ks_among_var <- apply(Ks_var_df[,5:9], 1, var)
 Ks_within_var <- (Ks_var_df$sigma)^2
 Ks_among_var_percent <- (Ks_among_var/(Ks_among_var + Ks_within_var))*100
 
+sink(file = "Output/Model_Fits/Ks_var.txt")
+summary(Ks_var)
+sink()
+
 
 # 2. Leaf Specific Conductivity (LSC)
 LSC_var <- brm(LSC_scaled ~ 1 + (1|Species),
@@ -223,6 +259,10 @@ LSC_var_df <- as.data.frame(LSC_var)
 LSC_among_var <- apply(LSC_var_df[,5:9], 1, var)
 LSC_within_var <- (LSC_var_df$sigma)^2
 LSC_among_var_percent <- (LSC_among_var/(LSC_among_var + LSC_within_var))*100
+
+sink(file = "Output/Model_Fits/LSC_var.txt")
+summary(LSC_var)
+sink()
 
 
 # 3. Photosynthetic Rate (Photo)
@@ -241,6 +281,10 @@ Photo_among_var <- apply(Photo_var_df[,5:9], 1, var)
 Photo_within_var <- (Photo_var_df$sigma)^2
 Photo_among_var_percent <- (Photo_among_var/(Photo_among_var + Photo_within_var))*100
 
+sink(file = "Output/Model_Fits/Photo_var.txt")
+summary(Photo_var)
+sink()
+
 
 # 4. Total Assimilation (Total_Assim)
 LSP_var <- brm(Total_Assim_scaled ~ 1 + (1|Species),
@@ -257,6 +301,10 @@ LSP_var_df <- as.data.frame(LSP_var)
 LSP_among_var <- apply(LSP_var_df[,5:9], 1, var)
 LSP_within_var <- (LSP_var_df$sigma)^2
 LSP_among_var_percent <- (LSP_among_var/(LSP_among_var + LSP_within_var))*100
+
+sink(file = "Output/Model_Fits/LSP_var.txt")
+summary(LSP_var)
+sink()
 
 
 # 5. Stomatal Conductance (Cond)
@@ -275,6 +323,10 @@ Cond_among_var <- apply(Cond_var_df[,5:9], 1, var)
 Cond_within_var <- (Cond_var_df$sigma)^2
 Cond_among_var_percent <- (Cond_among_var/(Cond_among_var + Cond_within_var))*100
 
+sink(file = "Output/Model_Fits/Cond_var.txt")
+summary(Cond_var)
+sink()
+
 
 # 6. Instantaneous Water Use Efficiency (WUE_Instan)
 WUE_Instan_var <- brm(WUE_Instan_scaled ~ 1 + (1|Species),
@@ -291,6 +343,10 @@ WUE_Instan_var_df <- as.data.frame(WUE_Instan_var)
 WUE_Instan_among_var <- apply(WUE_Instan_var_df[,5:9], 1, var)
 WUE_Instan_within_var <- (WUE_Instan_var_df$sigma)^2
 WUE_Instan_among_var_percent <- (WUE_Instan_among_var/(WUE_Instan_among_var + WUE_Instan_within_var))*100
+
+sink(file = "Output/Model_Fits/WUE_Instan_var.txt")
+summary(WUE_Instan_var)
+sink()
 
 
 # Make a dataframe for plotting
