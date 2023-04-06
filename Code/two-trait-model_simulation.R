@@ -85,17 +85,32 @@ p1_pos <- p1_pos + geom_point(aes(colour = Performance_1)) +
   #ggtitle("Simulation: Scenario 1") + 
   xlab("Trait 1") + ylab("Trait 2") +
   theme_classic() + labs(colour = "Performance") +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
+  theme(
+    axis.title.x = element_text(size = 26),
+    axis.title.y = element_text(size = 26),
+    axis.text.x = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14),
+    legend.position = "none"
+  ) +
   geom_smooth(color = 'magenta4', data = predicted_1, aes(x = Perf_pred, y = Trait_2), 
               se = FALSE, linetype = "dotdash", size = 1.5) +
-  geom_segment(x = 0.3, y = 0, xend = eigen$values[1] + 0.3, yend = eigen$slopes[1] * eigen$values[1], 
+  # geom_segment(x = 0.3, y = 0, xend = eigen$values[1] + 0.3, yend = eigen$slopes[1] * eigen$values[1], 
+  #              colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
+  # geom_segment(x = 0.3, y = 0, xend = eigen$values[2] + 0.3, yend = eigen$slopes[2] * eigen$values[2], 
+  #              colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
+  geom_segment(x = 0.3, y = 0, xend = 1.8 + 0.3, yend = 1.8, 
                colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
-  geom_segment(x = 0.3, y = 0, xend = eigen$values[2] + 0.3, yend = eigen$slopes[2] * eigen$values[2], 
+  geom_segment(x = 0.3, y = 0, xend = 0.2 + 0.3, yend = -0.2, 
                colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1)
 
 p1_pos
+
+# And Saving
+ggsave(filename = "p1_pos2.pdf",
+       path = "Output/Figures",
+       height = 4, width = 5)
 
 # Plot for Scenario 2
 p2_pos <- ggplot(data = dat, aes(x = Trait_1, y = Trait_2)) + 
@@ -105,17 +120,32 @@ p2_pos <- p2_pos + geom_point(aes(colour = Performance_2)) +
   #ggtitle("Simulation: Scenario 2") + 
   xlab("Trait 1") + ylab("Trait 2") +
   theme_classic() + labs(colour = "Performance") +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
+  theme(
+        axis.title.x = element_text(size = 26),
+        axis.title.y = element_text(size = 26),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20),
+        legend.title = element_blank(),
+        legend.text = element_text(size = 14),
+        legend.position = "none"
+        ) +
   geom_smooth(color = 'magenta4', data = predicted_2, aes(x = Perf_pred, y = Trait_2), 
               se = FALSE, linetype = "dotdash", size = 1.5) +
-  geom_segment(x = -0.2, y = -0.2, xend = eigen$values[1] - 0.2, yend = (eigen$slopes[1] * eigen$values[1]) - 0.2, 
-               colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
-  geom_segment(x = -0.2, y = -0.2, xend = eigen$values[2] - 0.2, yend = (eigen$slopes[2] * eigen$values[2]) - 0.2, 
-               colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1)
+  # geom_segment(x = -0.2, y = -0.2, xend = eigen$values[1] - 0.2, yend = (eigen$slopes[1] * eigen$values[1]) - 0.2, 
+  #              colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
+  # geom_segment(x = -0.2, y = -0.2, xend = eigen$values[2] - 0.2, yend = (eigen$slopes[2] * eigen$values[2]) - 0.2, 
+  #              colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
+  geom_segment(x = -0.2, y = -0.2, xend = 1.8 - 0.2, yend = 1.8 - 0.2, 
+               colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
+  geom_segment(x = -0.2, y = -0.2, xend = 0.2 - 0.2, yend = -0.2 - 0.2, 
+               colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1)
 
 p2_pos
+
+# And Saving
+ggsave(filename = "p2_pos2.pdf",
+       path = "Output/Figures",
+       height = 4, width = 5)
 
 
 ###############################################
