@@ -84,6 +84,7 @@ p1_pos <- p1_pos + geom_point(aes(colour = Performance_1)) +
   scale_colour_distiller(type = "seq", palette = "Spectral", limits = c(-3.1,2.95), direction = 1) +
   #ggtitle("Simulation: Scenario 1") + 
   xlab("Trait 1") + ylab("Trait 2") +
+  xlim(-3.5,4.2) +
   theme_classic() + labs(colour = "Performance") +
   theme(
     axis.title.x = element_text(size = 26),
@@ -108,9 +109,9 @@ p1_pos <- p1_pos + geom_point(aes(colour = Performance_1)) +
 p1_pos
 
 # And Saving
-ggsave(filename = "p1_pos2.pdf",
-       path = "Output/Figures",
-       height = 4, width = 5)
+# ggsave(filename = "p1_pos2.pdf",
+#        path = "Output/Figures",
+#        height = 4, width = 5)
 
 # Plot for Scenario 2
 p2_pos <- ggplot(data = dat, aes(x = Trait_1, y = Trait_2)) + 
@@ -119,6 +120,7 @@ p2_pos <- p2_pos + geom_point(aes(colour = Performance_2)) +
   scale_colour_distiller(type = "seq", palette = "Spectral", limits = c(-3.1,2.95), direction = 1) +
   #ggtitle("Simulation: Scenario 2") + 
   xlab("Trait 1") + ylab("Trait 2") +
+  xlim(-3.5,4.2) +
   theme_classic() + labs(colour = "Performance") +
   theme(
         axis.title.x = element_text(size = 26),
@@ -143,9 +145,9 @@ p2_pos <- p2_pos + geom_point(aes(colour = Performance_2)) +
 p2_pos
 
 # And Saving
-ggsave(filename = "p2_pos2.pdf",
-       path = "Output/Figures",
-       height = 4, width = 5)
+# ggsave(filename = "p2_pos2.pdf",
+#        path = "Output/Figures",
+#        height = 4, width = 5)
 
 
 ###############################################
@@ -181,40 +183,45 @@ for(j in 1:n_iters){
   var_y_2[j] <- round(var(y_2), 3)
 }
 
+var_y_1_Pos <- var_y_1
+var_y_2_Pos <- var_y_2
 
 ################################################
 # Plotting Distribution of Simulated Variances #
 ################################################
 
-p3_pos <- ggplot(data = as.data.frame(var_y_1), aes(x = var_y_1))
+p3_pos <- ggplot(data = as.data.frame(var_y_1_Pos), aes(x = var_y_1_Pos))
 p3_pos <- p3_pos + geom_density(colour = "grey4", fill = "grey44") +
-  xlim(0.55,1.07) +
-  geom_vline(xintercept = mean(var_y_1), size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_1, probs = 0.025), linetype = "dashed", size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_1, probs = 0.975), linetype = "dashed", size = 1.5) +
+  #xlim(0.55,1.07) +
+  xlim(0.40,1.10) +
+  geom_vline(xintercept = mean(var_y_1_Pos), size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_1_Pos, probs = 0.025), linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_1_Pos, probs = 0.975), linetype = "dashed", size = 1.5) +
   #ggtitle("Performance Variance: Scenario 1") + 
   xlab("Variance") +
   theme_classic() +
   theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
+        axis.title.x = element_text(size = 26),
         axis.title.y = element_blank(),
-        axis.text.x = element_text(size = 12),
+        axis.text.x = element_text(size = 20),
         axis.text.y = element_blank())
+
 p3_pos
 
-p4_pos <- ggplot(data = as.data.frame(var_y_2), aes(x = var_y_2))
+p4_pos <- ggplot(data = as.data.frame(var_y_2_Pos), aes(x = var_y_2_Pos))
 p4_pos <- p4_pos + geom_density(colour = "grey4", fill = "grey44") +
-  xlim(0.10, 0.17) +
-  geom_vline(xintercept = mean(var_y_2), size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_2, probs = 0.025), linetype = "dashed", size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_2, probs = 0.975), linetype = "dashed", size = 1.5) +
+  #xlim(0.10, 0.17) +
+  xlim(0.10, 0.20) +
+  geom_vline(xintercept = mean(var_y_2_Pos), size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_2_Pos, probs = 0.025), linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_2_Pos, probs = 0.975), linetype = "dashed", size = 1.5) +
   #ggtitle("Performance Variance: Scenario 2") + 
   xlab("Variance") +
   theme_classic() +
   theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
+        axis.title.x = element_text(size = 26),
         axis.title.y = element_blank(),
-        axis.text.x = element_text(size = 12),
+        axis.text.x = element_text(size = 20),
         axis.text.y = element_blank())
 p4_pos
 
@@ -225,13 +232,24 @@ p4_pos
 
 # Will manually add the broken x-axis in panel D
 
-plot_grid(p1, p3, p2, p4,
-          labels = c("A", "B", "C", "D"), ncol = 2, nrow = 2)
+# plot_grid(p1, p3, p2, p4,
+#           labels = c("A", "B", "C", "D"), ncol = 2, nrow = 2)
+# 
+# # And Saving
+# ggsave(filename = "two-trait-simulation_panel.pdf",
+#        path = "Output/Figures",
+#        height = 8, width = 10)
+
+
+plot_grid(p1_pos, p3_pos, p2_pos, p4_pos,
+          ncol = 2, nrow = 2)
 
 # And Saving
-ggsave(filename = "two-trait-simulation_panel.pdf",
+ggsave(filename = "two-trait-simulation_4panel_PosCor.pdf",
        path = "Output/Figures",
        height = 8, width = 10)
+
+
 
 #####################################################
 # Save each plot individually for conceptual figure #
@@ -360,18 +378,30 @@ p1_neg <- p1_neg + geom_point(aes(colour = Performance_1)) +
   scale_colour_distiller(type = "seq", palette = "Spectral", limits = c(-3.1,2.95), direction = 1) +
   #ggtitle("Simulation: Scenario 1") + 
   xlab("Trait 1") + ylab("Trait 2") +
+  xlim(-3.5,4.2) +
   theme_classic() + labs(colour = "Performance") +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
+  theme(
+    axis.title.x = element_text(size = 26),
+    axis.title.y = element_text(size = 26),
+    axis.text.x = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14),
+    legend.position = "none"
+  ) +
   geom_smooth(color = 'magenta4', data = predicted_1, aes(x = Perf_pred, y = Trait_2), 
               se = FALSE, linetype = "dotdash", size = 1.5) +
-  geom_segment(x = 0.3, y = 0, xend = eigen$values[1] + 0.3, yend = eigen$slopes[1] * eigen$values[1], 
+  # geom_segment(x = 0.3, y = 0, xend = eigen$values[1] + 0.3, yend = eigen$slopes[1] * eigen$values[1], 
+  #              colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
+  # geom_segment(x = 0.3, y = 0, xend = eigen$values[2] + 0.3, yend = eigen$slopes[2] * eigen$values[2], 
+  #              colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
+  geom_segment(x = 0.3, y = 0, xend = 1.8 + 0.3, yend = -1.8, 
                colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
-  geom_segment(x = 0.3, y = 0, xend = eigen$values[2] + 0.3, yend = eigen$slopes[2] * eigen$values[2], 
+  geom_segment(x = 0.3, y = 0, xend = 0.2 + 0.3, yend = 0.2, 
                colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1)
 
 p1_neg
+
 
 # Plot for Scenario 2
 p2_neg <- ggplot(data = dat, aes(x = Trait_1, y = Trait_2)) + 
@@ -380,16 +410,27 @@ p2_neg <- p2_neg + geom_point(aes(colour = Performance_2)) +
   scale_colour_distiller(type = "seq", palette = "Spectral", limits = c(-3.1,2.95), direction = 1) +
   #ggtitle("Simulation: Scenario 2") + 
   xlab("Trait 1") + ylab("Trait 2") +
+  xlim(-3.5,4.2) +
   theme_classic() + labs(colour = "Performance") +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
+  theme(
+    axis.title.x = element_text(size = 26),
+    axis.title.y = element_text(size = 26),
+    axis.text.x = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14),
+    legend.position = "none"
+  ) +
   geom_smooth(color = 'magenta4', data = predicted_2, aes(x = Perf_pred, y = Trait_2), 
               se = FALSE, linetype = "dotdash", size = 1.5) +
-  geom_segment(x = 0.2, y = 0.2, xend = eigen$values[1] + 0.2, yend = (eigen$slopes[1] * eigen$values[1]) + 0.2, 
-               colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
-  geom_segment(x = 0.2, y = 0.2, xend = eigen$values[2] + 0.2, yend = (eigen$slopes[2] * eigen$values[2]) + 0.2, 
-               colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1)
+  # geom_segment(x = 0.2, y = 0.2, xend = eigen$values[1] + 0.2, yend = (eigen$slopes[1] * eigen$values[1]) + 0.2, 
+  #              colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
+  # geom_segment(x = 0.2, y = 0.2, xend = eigen$values[2] + 0.2, yend = (eigen$slopes[2] * eigen$values[2]) + 0.2, 
+  #              colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
+  geom_segment(x = 0.2, y = 0.2, xend = 1.8 + 0.2, yend = -1.8 + 0.2, 
+               colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1) +
+  geom_segment(x = 0.2, y = 0.2, xend = 0.2 + 0.2, yend = 0.2 + 0.2, 
+               colour = "grey54", arrow = arrow(length = unit(0.4, "cm")), size = 1)
 
 p2_neg
 
@@ -426,40 +467,44 @@ for(j in 1:n_iters){
   var_y_2[j] <- round(var(y_2), 3)
 }
 
+var_y_1_Neg <- var_y_1
+var_y_2_Neg <- var_y_2
 
 ################################################
 # Plotting Distribution of Simulated Variances #
 ################################################
 
-p3_neg <- ggplot(data = as.data.frame(var_y_1), aes(x = var_y_1))
+p3_neg <- ggplot(data = as.data.frame(var_y_1_Neg), aes(x = var_y_1_Neg))
 p3_neg <- p3_neg + geom_density(colour = "grey4", fill = "grey44") +
-  xlim(0.10, 0.17) +
-  geom_vline(xintercept = mean(var_y_1), size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_1, probs = 0.025), linetype = "dashed", size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_1, probs = 0.975), linetype = "dashed", size = 1.5) +
+  #xlim(0.10, 0.17) +
+  xlim(0.10, 0.20) +
+  geom_vline(xintercept = mean(var_y_1_Neg), size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_1_Neg, probs = 0.025), linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_1_Neg, probs = 0.975), linetype = "dashed", size = 1.5) +
   #ggtitle("Performance Variance: Scenario 1") + 
   xlab("Variance") +
   theme_classic() +
   theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
+        axis.title.x = element_text(size = 26),
         axis.title.y = element_blank(),
-        axis.text.x = element_text(size = 12),
+        axis.text.x = element_text(size = 20),
         axis.text.y = element_blank())
 p3_neg
 
-p4_neg <- ggplot(data = as.data.frame(var_y_2), aes(x = var_y_2))
+p4_neg <- ggplot(data = as.data.frame(var_y_2_Neg), aes(x = var_y_2_Neg))
 p4_neg <- p4_neg + geom_density(colour = "grey4", fill = "grey44") +
-  xlim(0.55,1.07) +
-  geom_vline(xintercept = mean(var_y_2), size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_2, probs = 0.025), linetype = "dashed", size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_2, probs = 0.975), linetype = "dashed", size = 1.5) +
+  #xlim(0.55,1.07) +
+  xlim(0.45,1.10) +
+  geom_vline(xintercept = mean(var_y_2_Neg), size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_2_Neg, probs = 0.025), linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_2_Neg, probs = 0.975), linetype = "dashed", size = 1.5) +
   #ggtitle("Performance Variance: Scenario 2") + 
   xlab("Variance") +
   theme_classic() +
   theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
+        axis.title.x = element_text(size = 26),
         axis.title.y = element_blank(),
-        axis.text.x = element_text(size = 12),
+        axis.text.x = element_text(size = 20),
         axis.text.y = element_blank())
 p4_neg
 
@@ -501,7 +546,15 @@ ggsave(filename = "p4_neg.pdf",
        height = 5, width = 6)
 
 
+## And together
 
+plot_grid(p1_neg, p3_neg, p2_neg, p4_neg,
+          ncol = 2, nrow = 2)
+
+# And Saving
+ggsave(filename = "two-trait-simulation_4panel_NegCor.pdf",
+       path = "Output/Figures",
+       height = 8, width = 10)
 
 ########################
 # No trait correlation #
@@ -583,17 +636,26 @@ p1_NA <- p1_NA + geom_point(aes(colour = Performance_1)) +
   scale_colour_distiller(type = "seq", palette = "Spectral", limits = c(-3.1,2.95), direction = 1) +
   #ggtitle("Simulation: Scenario 1") + 
   xlab("Trait 1") + ylab("Trait 2") +
+  xlim(-3.5,4.2) +
   theme_classic() + labs(colour = "Performance") +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
+  # theme(plot.title = element_text(size = 14, hjust = 0.5),
+  #       axis.title.x = element_text(size = 14),
+  #       axis.title.y = element_text(size = 14)) +
+  theme(
+    axis.title.x = element_text(size = 26),
+    axis.title.y = element_text(size = 26),
+    axis.text.x = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14),
+    legend.position = "none"
+  ) +
   geom_smooth(color = 'magenta4', data = predicted_1, aes(x = Perf_pred, y = Trait_2), 
               se = FALSE, linetype = "dotdash", size = 1.5) +
   geom_segment(x = 0, y = 0, xend = 0, yend = 1.7, 
                colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   geom_segment(x = 0, y = 0, xend = 1.7, yend = 0, 
                colour = "grey54", arrow = arrow(length = unit(0.3, "cm")), size = 1)
-
 p1_NA
 
 # Plot for Scenario 2
@@ -603,10 +665,20 @@ p2_NA <- p2_NA + geom_point(aes(colour = Performance_2)) +
   scale_colour_distiller(type = "seq", palette = "Spectral", limits = c(-3.1,2.95), direction = 1) +
   #ggtitle("Simulation: Scenario 2") + 
   xlab("Trait 1") + ylab("Trait 2") +
+  xlim(-3.5,4.2) +
   theme_classic() + labs(colour = "Performance") +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14)) +
+  # theme(plot.title = element_text(size = 14, hjust = 0.5),
+  #       axis.title.x = element_text(size = 14),
+  #       axis.title.y = element_text(size = 14)) +
+  theme(
+    axis.title.x = element_text(size = 26),
+    axis.title.y = element_text(size = 26),
+    axis.text.x = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14),
+    legend.position = "none"
+  ) +
   geom_smooth(color = 'magenta4', data = predicted_2, aes(x = Perf_pred, y = Trait_2), 
               se = FALSE, linetype = "dotdash", size = 1.5) +
   geom_segment(x = 0, y = 0, xend = 0, yend = 1.7, 
@@ -650,40 +722,44 @@ for(j in 1:n_iters){
   var_y_2[j] <- round(var(y_2), 3)
 }
 
+var_y_1_NA <- var_y_1
+var_y_2_NA <- var_y_2
 
 ################################################
 # Plotting Distribution of Simulated Variances #
 ################################################
 
-p3_NA <- ggplot(data = as.data.frame(var_y_1), aes(x = var_y_1))
+p3_NA <- ggplot(data = as.data.frame(var_y_1_NA), aes(x = var_y_1_NA))
 p3_NA <- p3_NA + geom_density(colour = "grey4", fill = "grey44") +
-  xlim(0.4,0.75) +
-  geom_vline(xintercept = mean(var_y_1), size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_1, probs = 0.025), linetype = "dashed", size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_1, probs = 0.975), linetype = "dashed", size = 1.5) +
+  #xlim(0.4,0.75) +
+  xlim(0.25,0.75) +
+  geom_vline(xintercept = mean(var_y_1_NA), size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_1_NA, probs = 0.025), linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_1_NA, probs = 0.975), linetype = "dashed", size = 1.5) +
   #ggtitle("Performance Variance: Scenario 1") + 
   xlab("Variance") +
   theme_classic() +
   theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
+        axis.title.x = element_text(size = 26),
         axis.title.y = element_blank(),
-        axis.text.x = element_text(size = 12),
+        axis.text.x = element_text(size = 20),
         axis.text.y = element_blank())
 p3_NA
 
-p4_NA <- ggplot(data = as.data.frame(var_y_2), aes(x = var_y_2))
+p4_NA <- ggplot(data = as.data.frame(var_y_2_NA), aes(x = var_y_2_NA))
 p4_NA <- p4_NA + geom_density(colour = "grey4", fill = "grey44") +
-  xlim(0.4,0.75) +
-  geom_vline(xintercept = mean(var_y_2), size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_2, probs = 0.025), linetype = "dashed", size = 1.5) +
-  geom_vline(xintercept = quantile(var_y_2, probs = 0.975), linetype = "dashed", size = 1.5) +
+  #xlim(0.4,0.75) +
+  xlim(0.25,0.75) +
+  geom_vline(xintercept = mean(var_y_2_NA), size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_2_NA, probs = 0.025), linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = quantile(var_y_2_NA, probs = 0.975), linetype = "dashed", size = 1.5) +
   #ggtitle("Performance Variance: Scenario 2") + 
   xlab("Variance") +
   theme_classic() +
   theme(plot.title = element_text(size = 14, hjust = 0.5),
-        axis.title.x = element_text(size = 14),
+        axis.title.x = element_text(size = 26),
         axis.title.y = element_blank(),
-        axis.text.x = element_text(size = 12),
+        axis.text.x = element_text(size = 20),
         axis.text.y = element_blank())
 p4_NA
 
@@ -723,3 +799,14 @@ p4_NA
 ggsave(filename = "p4_NA.pdf",
        path = "Output/Figures",
        height = 5, width = 6)
+
+
+## And together
+
+plot_grid(p1_NA, p3_NA, p2_NA, p4_NA,
+          ncol = 2, nrow = 2)
+
+# And Saving
+ggsave(filename = "two-trait-simulation_4panel_NACor.pdf",
+       path = "Output/Figures",
+       height = 8, width = 10)
