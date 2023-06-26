@@ -305,7 +305,92 @@ ggsave(filename = "PCA_Performance_panel.pdf",
        height = 8, width = 12)
 
 
+#########################################################
+# Same as above, but for remaining 3 Performance Traits #
+#########################################################
 
+# 2. LSC: PC2 and PC8 are most aligned
+color <- cut(Protea_data$LSC_scaled, breaks=quantile(Protea_data$LSC_scaled, c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0)),
+             c("Low",
+               "Medium low",
+               "Medium",
+               "Medium high",
+               "High"),
+             include.lowest=TRUE)
+tr_pca_df <- tibble(PC2=pca_results$scores[, 2],
+                    PC8=pca_results$scores[, 8],
+                    Species=Protea_data$Species,
+                    Phys_level = factor(color, ordered = TRUE))
+
+pc_LSC2 <- ggplot(tr_pca_df, aes(x = PC2, y = PC8, color = Phys_level)) +
+  geom_point() + stat_ellipse(aes(x=PC2, y=PC8, group=Species), colour = "black") +
+  scale_fill_distiller(type = "seq", palette = "Spectral", direction = 1) +
+  ggtitle("Leaf-Specific Conductivity") + xlab("PC 2 (20.7%)") + ylab("PC 8 (1.0%)") +
+  theme_classic() +
+  guides(color = "none") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+pc_LSC2
+
+
+# 4. Total Assimilation: PC2 and PC7 are most aligned
+color <- cut(Protea_data$Total_Assim_scaled, breaks=quantile(Protea_data$Total_Assim_scaled, c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0)),
+             c("Low",
+               "Medium low",
+               "Medium",
+               "Medium high",
+               "High"),
+             include.lowest=TRUE)
+tr_pca_df <- tibble(PC2=pca_results$scores[, 2],
+                    PC7=pca_results$scores[, 7],
+                    Species=Protea_data$Species,
+                    Phys_level = factor(color, ordered = TRUE))
+
+pc_Total_Assim2 <- ggplot(tr_pca_df, aes(x = PC2, y = PC7, color = Phys_level)) +
+  geom_point() + stat_ellipse(aes(x=PC2, y=PC7, group=Species), colour = "black") +
+  scale_fill_distiller(type = "seq", palette = "Spectral", direction = 1) +
+  ggtitle("Leaf-Specific \n Photosynthetic Rate") + xlab("PC 2 (20.7%)") + ylab("PC 7 (1.5%)") +
+  theme_classic() +
+  guides(color = "none") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+pc_Total_Assim2
+
+
+# 6. Instantaneous WUE: PC6 and PC8 are most aligned
+color <- cut(Protea_data$WUE_Instan_scaled, breaks=quantile(Protea_data$WUE_Instan_scaled, c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0)),
+             c("Low",
+               "Medium low",
+               "Medium",
+               "Medium high",
+               "High"),
+             include.lowest=TRUE)
+tr_pca_df <- tibble(PC6=pca_results$scores[, 6],
+                    PC8=pca_results$scores[, 8],
+                    Species=Protea_data$Species,
+                    Phys_level = factor(color, ordered = TRUE))
+
+pc_WUE2 <- ggplot(tr_pca_df, aes(x = PC6, y = PC8, color = Phys_level)) +
+  geom_point() + stat_ellipse(aes(x=PC6, y=PC8, group=Species), colour = "black") +
+  scale_fill_distiller(type = "seq", palette = "Spectral", direction = 1) +
+  ggtitle("Instantaneous \n Water-Use Efficiency") + xlab("PC 6 (2.3%)") + ylab("PC 8 (1.0%)") +
+  theme_classic() +
+  guides(color = "none") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+pc_WUE2
+
+
+# Multi-panel plot for the other three physiological performance PCs (top is PC1 and PC2, bottom is PC axes aligned w/ function)
+plot_grid(pc_LSC, pc_Total_Assim, pc_WUE, pc_LSC2, pc_Total_Assim2, pc_WUE2,
+          labels = c("A", "B", "C", "D", "E", "F"), ncol = 3, nrow = 2)
+
+ggsave(filename = "PCA_Performance_panel_supplement.pdf", 
+       path = "Output/Figures",
+       height = 8, width = 12)
 
 
 

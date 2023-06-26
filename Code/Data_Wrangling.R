@@ -11,7 +11,9 @@ rm(list = ls())
 full_data <- read.csv("Data/Individual_Data_for_Analysis.csv", na.strings = ".")
 
 
-# Drop populations not used, create variable for Instantaneous WUE, select relevant columns
+# Drop populations not used (these were not presented in Nolting et al. 2021 either)
+# Create variable for Instantaneous WUE
+# Select relevant columns
 subset_data <- full_data %>%
   filter(Species != "LDSA") %>%
   filter(Site != "McGregor") %>% 
@@ -23,7 +25,7 @@ subset_data <- full_data %>%
          SPI_Top, WUE_Instantaneous) %>%
   drop_na()
 
-# Dropping the Cederberg, Protea repens population
+# Dropping the Cederberg, Protea repens population (presented in Nolting et al. 2021, dropped here for simplicity)
 subset_data$keep <- "yes"
 subset_data$keep[subset_data$Site == "Cederberg" & subset_data$Species == "PRRE"] <- "no"
 

@@ -77,8 +77,8 @@ Photo_mod <- brm(Photo_scaled ~ BW_scaled + WD_scaled + Leaf_Area_scaled +
                  iter = 4000, warmup = 2000, chains = 4,
                  file = "Output/Model_Fits/Photo_mod")
 
-bayes_R2(photo_mod)
-bayes_R2(photo_mod, re_formula = NA)
+bayes_R2(Photo_mod)
+bayes_R2(Photo_mod, re_formula = NA)
 
 sink(file = "Output/Model_Fits/Photo_mod.txt")
 summary(Photo_mod)

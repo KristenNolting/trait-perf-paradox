@@ -213,6 +213,8 @@ Ks2_hist <-
         axis.title.y = element_blank())
 Ks2_hist
 
+# Pull out summary
+summary(CosDegrees_Abs_dist)
 
 #######
 # LSC #
@@ -272,6 +274,9 @@ LSC2_hist <-
         axis.title.x = element_text(size = 12),
         axis.title.y = element_blank())
 LSC2_hist
+
+# Pull out summary
+summary(CosDegrees_Abs_dist)
 
 
 #########
@@ -333,6 +338,9 @@ Photo2_hist <-
         axis.title.y = element_blank())
 Photo2_hist
 
+# Pull out summary
+summary(CosDegrees_Abs_dist)
+
 
 #######
 # LSP #
@@ -392,6 +400,9 @@ Total_Assim2_hist <-
         axis.title.x = element_text(size = 12),
         axis.title.y = element_blank())
 Total_Assim2_hist
+
+# Pull out summary
+summary(CosDegrees_Abs_dist)
 
 
 ########
@@ -453,6 +464,9 @@ Cond2_hist <-
         axis.title.y = element_blank())
 Cond2_hist
 
+# Pull out summary
+summary(CosDegrees_Abs_dist)
+
 
 ##############
 # WUE_Instan #
@@ -512,6 +526,9 @@ WUE_Instan2_hist <-
         axis.title.x = element_text(size = 12),
         axis.title.y = element_blank())
 WUE_Instan2_hist 
+
+# Pull out summary
+summary(CosDegrees_Abs_dist)
 
 
 # Panel Plot
